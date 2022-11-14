@@ -14,6 +14,37 @@ $result = mysqli_query($conn, $sql);
 <head>
 	<title>View Employee |  Admin Panel | XYZ Corporation</title>
 	<link rel="stylesheet" type="text/css" href="styleview.css">
+	<style>
+		.container {
+			width: 100%;
+			height: 8vh;
+			padding: 20px 0px 5px;
+			background:#060606;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		form{
+			background: #fff;
+			width: 600px;
+			height: 30px;
+			display: flex;
+		}
+		form input {
+			flex: 1;
+			border: none;
+			outline: none;
+		}
+		form button {
+			background: red;
+			padding: 10px 50px;
+			border: none;
+			outline: none;
+			color: #fff;
+			letter-spacing: 1px;
+			cursor: pointer;
+		}
+	</style>
 </head>
 <body>
 	<header>
@@ -27,6 +58,14 @@ $result = mysqli_query($conn, $sql);
 			</ul>
 		</nav>
 	</header>
+	
+	<div class="container">
+		<form>
+			<input type="text" placeholder="Search with Location">
+			<button type="submit">Search</button>
+		</form>
+
+	</div>
 	
 	<div class="divider"></div>
 
