@@ -14,7 +14,7 @@ $result = mysqli_query($conn, $sql);
 	
 	<header>
 		<nav>
-			<h1>XYZ Corp.</h1>
+			<h1>XYZ Corp</h1>
 			<ul id="navli">
 				<li><a class="homered" href="aloginwel.php">HOME</a></li>
 				<li><a class="homeblack" href="addemp.php">Add Employee</a></li>
