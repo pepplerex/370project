@@ -11,4 +11,6 @@ if(!$conn){
 	echo "Databese Connection Failed";
 }
 
+return $conn;
+exit;
 ?>

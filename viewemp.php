@@ -60,9 +60,9 @@ $result = mysqli_query($conn, $sql);
 	</header>
 	
 	<div class="container">
-		<form>
-			<input type="text" placeholder="Search with Location">
-			<button type="submit">Search</button>
+		<form method="post">
+			<input name="search" type="text" placeholder="Search with ID, email, name & Location" value="<?php echo htmlspecialchars($_POST['search']) ?? "";?>">
+			<button name="e_search" type="submit">Search</button>
 		</form>
 
 	</div>
@@ -93,32 +93,100 @@ $result = mysqli_query($conn, $sql);
 				<th align = "center">Options</th>
 			</tr>
 
-			<?php
-				while ($employee = mysqli_fetch_assoc($result)) {
-					echo "<tr>";
-					echo "<td>".$employee['id']."</td>";
-					echo "<td><img src='process/".$employee['pic']."' height = 60px width = 60px></td>";
-					echo "<td>".$employee['firstName']." ".$employee['lastName']."</td>";
-					
-					echo "<td>".$employee['email']."</td>";
-					echo "<td>".$employee['birthday']."</td>";
-					echo "<td>".$employee['gender']."</td>";
-					echo "<td>".$employee['contact']."</td>";
-					echo "<td>".$employee['nid']."</td>";
-					echo "<td>".$employee['address']."</td>";
-					echo "<td>".$employee['dept']."</td>";
-					echo "<td>".$employee['degree']."</td>";
-					echo "<td>".$employee['guarantor_name']."</td>";
-					echo "<td>".$employee['guarantor_address']."</td>";
-					echo "<td>".$employee['guarantor_contact']."</td>";
-					echo "<td>".$employee['remarks']."</td>";
-					
+			<?php 
 
-					echo "<td><a href=\"edit.php?id=$employee[id]\">Edit</a> | <a href=\"delete.php?id=$employee[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
+				function val_input($search){
+
+					$conn = include "process/dbh.php";
+
+					$search = stripcslashes($search);
+					$search = trim($search);
+					$search = htmlspecialchars($search);
+					$search = mysqli_real_escape_string($conn,$search);
+
+					return $search;
+					exit;
+				}
+			
+				if(isset($_POST["e_search"])){
+
+					$conn = include "process/dbh.php";
+
+					$search = val_input($_POST["search"]);
+					$sql  = "SELECT * FROM employee WHERE id LIKE '%$search%' or firstName LIKE '%$search%' or lastName LIKE '%$search%'
+																			or email LIKE '%$search%' or dept LIKE '%$search%'
+																			or address LIKE '%$search%' ORDER BY id DESC";
+
+
+					$query = mysqli_query($conn,$sql);
+					if($query){
+						if(mysqli_num_rows($query) > 0){
+
+							while ($employee = mysqli_fetch_assoc($query)) {
+								echo "<tr>";
+								echo "<td>".$employee['id']."</td>";
+								echo "<td><img src='process/".$employee['pic']."' height = 60px width = 60px></td>";
+								echo "<td>".$employee['firstName']." ".$employee['lastName']."</td>";
+								
+								echo "<td>".$employee['email']."</td>";
+								echo "<td>".$employee['birthday']."</td>";
+								echo "<td>".$employee['gender']."</td>";
+								echo "<td>".$employee['contact']."</td>";
+								echo "<td>".$employee['nid']."</td>";
+								echo "<td>".$employee['address']."</td>";
+								echo "<td>".$employee['dept']."</td>";
+								echo "<td>".$employee['degree']."</td>";
+								echo "<td>".$employee['guarantor_name']."</td>";
+								echo "<td>".$employee['guarantor_address']."</td>";
+								echo "<td>".$employee['guarantor_contact']."</td>";
+								echo "<td>".$employee['remarks']."</td>";
+								
+			
+								echo "<td><a href=\"edit.php?id=$employee[id]\">Edit</a> | <a href=\"delete.php?id=$employee[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
+			
+							}
+
+						}else{ ?>
+
+							<div class="alert">NO DATA FOUND</div>
+
+						<?php }
+					}
+
+				}else{
+
+					while ($employee = mysqli_fetch_assoc($result)) {
+						echo "<tr>";
+						echo "<td>".$employee['id']."</td>";
+						echo "<td><img src='process/".$employee['pic']."' height = 60px width = 60px></td>";
+						echo "<td>".$employee['firstName']." ".$employee['lastName']."</td>";
+						
+						echo "<td>".$employee['email']."</td>";
+						echo "<td>".$employee['birthday']."</td>";
+						echo "<td>".$employee['gender']."</td>";
+						echo "<td>".$employee['contact']."</td>";
+						echo "<td>".$employee['nid']."</td>";
+						echo "<td>".$employee['address']."</td>";
+						echo "<td>".$employee['dept']."</td>";
+						echo "<td>".$employee['degree']."</td>";
+						echo "<td>".$employee['guarantor_name']."</td>";
+						echo "<td>".$employee['guarantor_address']."</td>";
+						echo "<td>".$employee['guarantor_contact']."</td>";
+						echo "<td>".$employee['remarks']."</td>";
+						
+	
+						echo "<td><a href=\"edit.php?id=$employee[id]\">Edit</a> | <a href=\"delete.php?id=$employee[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
+	
+					}
+
 
 				}
-
-
+			
+			
+			?>
+			
+			<?php
+				
 			?>
 
 		</table>
