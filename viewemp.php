@@ -12,7 +12,7 @@ $result = mysqli_query($conn, $sql);
 
 <html>
 <head>
-	<title>View Employee |  Admin Panel | XYZ Corporation</title>
+	<title>View Employee |  Admin Panel | RH Private Security</title>
 	<link rel="stylesheet" type="text/css" href="styleview.css">
 	<style>
 		.container {
@@ -44,6 +44,18 @@ $result = mysqli_query($conn, $sql);
 			letter-spacing: 1px;
 			cursor: pointer;
 		}
+		.print {
+			color: white;
+			text-align: center;
+			text-color: white;
+			padding-left: 50px;
+			padding-bottom: 20px;	
+		}
+		a{
+			color: orange;
+			text-decoration: none;
+		}
+		
 	</style>
 </head>
 <body>
@@ -65,6 +77,12 @@ $result = mysqli_query($conn, $sql);
 			<button name="e_search" type="submit">Search</button>
 		</form>
 
+
+       <div class="print">
+		 	<a href="#" onclick="window.print();return false;">Click here to print this page</a>
+		 
+		</div>
+
 	</div>
 	
 	<div class="divider"></div>
@@ -75,7 +93,7 @@ $result = mysqli_query($conn, $sql);
 				<th align = "center">Emp. ID</th>
 				<th align = "center">Picture</th>
 				<th align = "center">Name</th>
-				<th align = "center">Email</th>
+
 				<th align = "center">Birthday</th>
 				<th align = "center">Gender</th>
 				<th align = "center">Contact</th>
@@ -128,7 +146,7 @@ $result = mysqli_query($conn, $sql);
 								echo "<td><img src='process/".$employee['pic']."' height = 60px width = 60px></td>";
 								echo "<td>".$employee['firstName']." ".$employee['lastName']."</td>";
 								
-								echo "<td>".$employee['email']."</td>";
+								
 								echo "<td>".$employee['birthday']."</td>";
 								echo "<td>".$employee['gender']."</td>";
 								echo "<td>".$employee['contact']."</td>";
@@ -161,7 +179,7 @@ $result = mysqli_query($conn, $sql);
 						echo "<td><img src='process/".$employee['pic']."' height = 60px width = 60px></td>";
 						echo "<td>".$employee['firstName']." ".$employee['lastName']."</td>";
 						
-						echo "<td>".$employee['email']."</td>";
+						
 						echo "<td>".$employee['birthday']."</td>";
 						echo "<td>".$employee['gender']."</td>";
 						echo "<td>".$employee['contact']."</td>";
@@ -190,6 +208,8 @@ $result = mysqli_query($conn, $sql);
 			?>
 
 		</table>
+
+		
 		
 	
 </body>
