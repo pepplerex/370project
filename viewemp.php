@@ -6,6 +6,11 @@ $sql = "SELECT * from `employee` , `rank` WHERE employee.id = rank.eid ORDER BY 
 //echo "$sql";
 $result = mysqli_query($conn, $sql);
 
+if(isset($_POST['search'])){
+	$phold = htmlspecialchars($_POST["search"]);
+}else{
+	$phold = "";
+}
 ?>
 
 
@@ -58,10 +63,10 @@ $result = mysqli_query($conn, $sql);
 			</ul>
 		</nav>
 	</header>
-	
+
 	<div class="container">
 		<form method="post">
-			<input name="search" type="text" placeholder="Search with ID, email, name & Location" value="<?php echo htmlspecialchars($_POST['search']) ?? "";?>">
+			<input name="search" type="text" placeholder="Search with ID, email, name & Location" value="<?php echo $phold;?>">
 			<button name="e_search" type="submit">Search</button>
 		</form>
 
