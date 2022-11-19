@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once ('process/dbh.php');
 $sql = "SELECT * from `employee` , `rank` WHERE employee.id = rank.eid ORDER BY id DESC";
 
@@ -12,9 +12,6 @@ if(isset($_POST['search'])){
 	$phold = "";
 }
 ?>
-
-
-
 <html>
 <head>
 	<title>View Employee |  Admin Panel | RH Private Security</title>
@@ -75,6 +72,21 @@ if(isset($_POST['search'])){
 			</ul>
 		</nav>
 	</header>
+
+	
+    <?php 
+    
+        if(isset($_SESSION["result"])){ ?>
+            <div id="result"></div>
+    <?php   } ?>
+
+    <?php 
+    
+    if(isset($_SESSION["err"])){ ?>
+        <div id="err"></div>
+    <?php   } ?>
+
+
 
 	<div class="container">
 		<form method="post">
@@ -215,7 +227,27 @@ if(isset($_POST['search'])){
 		</table>
 
 		
+		<script>
+
 		
+
+		document.addEventListener("DOMContentLoaded",function (){
+
+			let result = document.getElementById("result");
+
+			if(result){
+				alert("Succussfully registered new employee");
+			}
+
+			let err = document.getElementById("err");
+
+			if(err){
+				alert("Failed to registered new employee");
+			}
+
+		})
+
+    </script>
 	
 </body>
 </html>

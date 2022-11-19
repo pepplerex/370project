@@ -41,20 +41,20 @@ $sqlS = "INSERT INTO `salary`(`id`, `base`, `bonus`, `total`) VALUES ('$last_id'
 $salaryQ = mysqli_query($conn, $sqlS);
 $rank = mysqli_query($conn, "INSERT INTO `rank`(`eid`) VALUES ('$last_id')");
 
-if(($result) == 1){
+if($result){
     
-    echo ("<SCRIPT LANGUAGE='JavaScript'>
-    window.alert('Succesfully Registered')
-    window.location.href='..//viewemp.php';
-    </SCRIPT>");
+    // echo ("<SCRIPT LANGUAGE='JavaScript'>
+    // window.alert('Succesfully Registered')
+    // window.location.href='..//viewemp.php';
+    // </SCRIPT>");
     //header("Location: ..//aloginwel.php");
+    session_start();
+    header("location: ../viewemp.php").$_SESSION["result"]="result";
 }
 
 else{
-    echo ("<SCRIPT LANGUAGE='JavaScript'>
-    window.alert('Failed to Registere')
-    window.location.href='javascript:history.go(-1)';
-    </SCRIPT>");
+    session_start();
+    header("location: ../viewemp.php").$_SESSION["err"]="err";
 }
 
 }
@@ -73,11 +73,13 @@ $rank = mysqli_query($conn, "INSERT INTO `rank`(`eid`) VALUES ('$last_id')");
 
 if(($result) == 1){
     
-    echo ("<SCRIPT LANGUAGE='JavaScript'>
-    window.alert('Succesfully Registered')
-    window.location.href='..//viewemp.php';
-    </SCRIPT>");
+    // echo ("<SCRIPT LANGUAGE='JavaScript'>
+    // window.alert('Succesfully Registered')
+    // window.location.href='..//viewemp.php';
+    // </SCRIPT>");
     //header("Location: ..//aloginwel.php");
+    session_start();
+    header("location: ../viewemp.php").$_SESSION["result"]="result";
 }
 
 // else{

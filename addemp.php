@@ -36,9 +36,6 @@
     
     <div class="divider"></div>
 
-
-
-
     <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
         <div class="wrapper wrapper--w680">
             <div class="card card-1">
@@ -164,6 +161,8 @@
 
     <!-- Main JS-->
     <script src="js/global.js"></script>
+
+    
 
 </body>
 
