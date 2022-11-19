@@ -78,19 +78,19 @@ if(isset($_POST['search'])){
     
         if(isset($_SESSION["result"])){ ?>
             <div id="result"></div>
-    <?php   } ?>
+		<?php  unset($_SESSION["result"]); } ?>
 
-    <?php 
-    
-    if(isset($_SESSION["err"])){ ?>
-        <div id="err"></div>
-    <?php   } ?>
+		<?php 
+		
+		if(isset($_SESSION["err"])){ ?>
+			<div id="err"></div>
+		<?php  unset($_SESSION["err"]); } ?>
 
 
 
 	<div class="container">
 		<form method="post">
-			<input name="search" type="text" placeholder="Search with ID, email, name & Location" value="<?php echo $phold;?>">
+			<input name="search" type="text" placeholder="Search with ID, email, name & Location" value="<?= $phold;?>">
 			<button name="e_search" type="submit">Search</button>
 		</form>
 
